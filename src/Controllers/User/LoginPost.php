@@ -9,15 +9,12 @@ use Views\User\UserView;
 class LoginPost implements ControllerInterface
 {
     function control(){
-        $user = new User($_POST[LoginView::USERNAME], $_POST[LoginView::PASSWORD]);
+        $user = new User($_POST[LoginView::USERNAME], $_POST[LoginView::PASSWORD], $_POST[LoginView::EMAIL]);
         $view = new UserView($user);
         $view->render();
-
     }
 
     static function support(string $chemin, string $method) : bool{
         return $chemin === "/user/login" && $method === "POST";
     }
-
-
 }
