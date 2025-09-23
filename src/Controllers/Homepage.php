@@ -1,18 +1,18 @@
 <?php
-namespace Controllers\User;
+namespace Controllers;
 use Controllers\ControllerInterface ;
 use Models\User\User;
-use Views\User\LoginView;
+use Views\HomepageView;
 
-class Login implements ControllerInterface
+class Homepage implements ControllerInterface
 {
     function control(){
-        $view = new LoginView();
+        $view = new HomepageView();
         $view->render();
 
     }
 
     static function support(string $chemin, string $method) : bool{
-        return $chemin === "/user/login" && $method === "GET";
+        return $chemin === "/" && $method === "GET";
     }
 }

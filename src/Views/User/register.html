@@ -9,7 +9,7 @@
     </div>
 
     <div class="card matrix-border p-6">
-      <form id="registration-form" class="space-y-4" action="/user/login" method="post">
+      <form id="registration-form" class="space-y-4" action="/user/register" method="post">
         <div>
           <label class="block text-sm font-mono text-primary mb-2">Nom d'utilisateur</label>
           <input type="text" name="{{USERNAME_KEY}}" id="prenom" class="input" placeholder="Neo" required>
@@ -35,10 +35,6 @@
           <label class="flex items-center">
             <input type="checkbox" class="mr-2" required>
             <span class="text-xs text-gray-400">J'accepte les conditions d'utilisation</span>
-          </label>
-          <label class="flex items-center">
-            <input type="checkbox" class="mr-2">
-            <span class="text-xs text-gray-400">Recevoir les newsletters de sécurité</span>
           </label>
         </div>
 

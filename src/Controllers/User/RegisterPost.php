@@ -2,19 +2,19 @@
 namespace Controllers\User;
 use Controllers\ControllerInterface ; 
 use Models\User\User;
-use Views\User\LoginView;
+use Views\User\RegisterView;
 use Views\User\UserView;
 
 
-class LoginPost implements ControllerInterface
+class RegisterPost implements ControllerInterface
 {
     function control(){
-        $user = new User($_POST[LoginView::USERNAME], $_POST[LoginView::PASSWORD], $_POST[LoginView::EMAIL]);
+        $user = new User($_POST[RegisterView::USERNAME], $_POST[RegisterView::PASSWORD], $_POST[RegisterView::EMAIL]);
         $view = new UserView($user);
         $view->render();
     }
 
     static function support(string $chemin, string $method) : bool{
-        return $chemin === "/user/login" && $method === "POST";
+        return $chemin === "/user/register" && $method === "POST";
     }
 }
