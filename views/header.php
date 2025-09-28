@@ -16,7 +16,7 @@
         <ul>
             <a href="index.php"><li>Accueil</li></a>
             <?php if(!isset($_SESSION['id'])) : ?>
-                <a href="views/signup.php"><li>Inscription</li></a>
+                <a href="signup.php"><li>Inscription</li></a>
             <?php endif; ?>
         </ul>
     </nav>
