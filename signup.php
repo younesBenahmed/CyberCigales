@@ -4,7 +4,7 @@ include_once 'header.php';
 include_once 'helpers/session_helper.php';
 ?>
 
-<h1 class="header">Inscrivez-vous </h1>
+<h1 class="header"> Inscrivez-vous </h1>
 
 <?php flash('register'); ?>
 
