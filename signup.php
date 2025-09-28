@@ -1,14 +1,14 @@
 <?php
 
 include_once 'header.php';
-include_once '/helpers/session_helper.php';
+include_once 'helpers/session_helper.php';
 ?>
 
 <h1 class="header">Inscrivez-vous </h1>
 
 <?php flash('register'); ?>
 
-<form method="post" action="./controllers/Users.php">
+<form method="post" action="controllers/Users.php">
     <input type="hidden" name="type" value="register">
     
     <input type="text" name="prenom" 
