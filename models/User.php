@@ -17,7 +17,7 @@ class User{
     // Je l'utilise avant l'inscription pour éviter les doublons       
     public function findUserByEmailOrUsername($email, $username){
         // Je cherche un utilisateur avec soit ce pseudo, soit cet email
-        $this->db->query('SELECT * FROM users WHERE pseudo = :username OR usersEmail = :email');
+        $this->db->query('SELECT * FROM users WHERE pseudo = :username OR email = :email');
         $this->db->bind(':username', $username);
         $this->db->bind(':email', $email);
 
