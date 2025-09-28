@@ -1,5 +1,7 @@
 <?php
 require_once '../models/User.php';
+require_once '../helpers/session_helper.php';
+
 
 class Users {
     // Je stocke mon modèle User pour pouvoir l'utiliser dans toutes mes méthodes de cette classe
@@ -39,7 +41,58 @@ class Users {
         
         // Validation des inputs - je vérifie que tous les champs sont remplis
         if(empty($data['prenom']) || empty($data['nom']) || empty($data['pseudo']) || empty($data['email']) || empty($data['password']) || empty($data['password_repeat'])) {
-            // code à venir
+            flash("register", "Veuillez remplir tous les champs");
+            redirect("../signup.php");
+        }
+
+        // Je vérifie si le pseudo contient seulement des lettres et des chiffres (pas d'espaces, pas de caractères spéciaux)
+        // preg_match avec "/^[a-zA-Z0-9]*$/" = du début à la fin, que des lettres minuscules, majuscules et chiffres
+        if(!preg_match("/^[a-zA-Z0-9]*$/", $data['pseudo'])){
+        // Si le pseudo contient des trucs bizarres (espaces, @, !, etc.), j'affiche une erreur
+            flash("register", "Pseudo Invalide");
+            redirect("../signup.php"); // Je renvoie l'utilisateur sur la page d'inscription
+        }
+
+        // Je vérifie si l'email a un format valide (doit contenir @ et un domaine)
+        // FILTER_VALIDATE_EMAIL vérifie automatiquement si c'est un vrai format d'email
+        if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
+            // Si l'email n'a pas le bon format (pas de @, domaine invalide, etc.)
+            flash("register", "Email invalide");
+            redirect("../signup.php"); // Je renvoie l'utilisateur pour corriger
+        } 
+
+
+        // Je vérifie que le mot de passe fait au moins 6 caractères
+        if(strlen($data['password']) < 6){
+            // Si le mot de passe est trop court, c'est pas sécurisé
+            flash("register", "Mot de passe invalide");
+            redirect("../signup.php");
+        } else if($data['password'] !== $data['password_repeat']){
+            // Je vérifie que les deux mots de passe tapés sont identiques
+            // Si l'utilisateur s'est trompé en retapant son mot de passe
+            flash("register", "Les mots de passe ne correspondent pas");
+            redirect("../signup.php");
+        }
+
+
+        // Je vérifie si quelqu'un utilise déjà cet email ou ce pseudo
+        // Ma méthode findUserByEmailOrUsername cherche dans la base s'il existe déjà
+        if($this->userModel->findUserByEmailOrUsername($data['email'], $data['pseudo'])){
+            // Si quelqu'un a déjà pris cet email ou ce pseudo
+            flash("register", "Pseudo/Email est déja pris");
+            redirect("../signup.php");
+        }
+
+        // Tout est bon ! Je hash le mot de passe pour le sécuriser avant de le stocker en base
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        // J'essaie de créer l'utilisateur en base de données
+        if($this->userModel->register($data)){
+            // Si ça marche, je redirige vers la page de connexion
+            redirect("../login.php");
+        } else{
+            // Si ça plante (problème de base, etc.), j'arrête tout et j'affiche l'erreur
+            die("Quelque chose s'est mal passé");
         }
     }
 }

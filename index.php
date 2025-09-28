@@ -1,6 +1,12 @@
-<?php
-require_once('controllers/Router.php');
+<?php 
+    include_once 'views/header.php'
+?>
 
-$router = new Router();
-$router->routeReq();
+    <h1 id="index-text">Bienvenue, <?php if(isset($_SESSION['usersId'])){
+        echo explode(" ", $_SESSION['usersName'])[0];
+    }else{
+        echo 'Guest';
+    } 
+    ?>
+    
 
