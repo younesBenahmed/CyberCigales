@@ -26,7 +26,7 @@ class User{
 
         // Si j'ai trouvé un utilisateur, je le retourne
         // Sinon je retourne false (email et pseudo disponibles)
-        if($this->db->rowCount() > 0){
+        if($row){
             return $row; // Utilisateur trouvé = email/pseudo déjà pris
         }else{
             return false; // Aucun utilisateur = email/pseudo libres
