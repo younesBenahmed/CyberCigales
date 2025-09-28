@@ -9,7 +9,7 @@ if(!isset($_SESSION)){
 // $name = le nom du message (ex: "register", "login")
 // $message = le texte à afficher
 // $class = la classe CSS pour le style (rouge pour erreur par défaut)
-function flash($name = '', $message = '', $class = 'form-message form-message-red)'){
+function flash($name = '', $message = '', $class = 'form-message form-message-red'){
     if(!empty($name)){
         // Si j'ai un nom de message
         if(!empty($name)){

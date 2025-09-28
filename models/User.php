@@ -19,7 +19,7 @@ class User{
         // Je cherche un utilisateur avec soit ce pseudo, soit cet email
         $this->db->query('SELECT * FROM users WHERE pseudo = :username OR usersEmail = :email');
         $this->db->bind(':username', $username);
-        $this->db->binde(':email', $email);
+        $this->db->bind(':email', $email);
 
         // Je récupère le résultat (un utilisateur ou null)
         $row = $this->db->single();
@@ -39,7 +39,7 @@ class User{
 
         // Ma requête d'insertion avec tous les champs nécessaires
         $this->db->query('INSERT INTO users (prenom, nom, pseudo, email, password) 
-        VALUES (:name, :email, :pseudo, :password)');
+        VALUES (:prenom, :nom, :pseudo, :email, :password)');
 
         // Je lie chaque valeur à son placeholder
         $this->db->bind(':prenom', $data['prenom']);
