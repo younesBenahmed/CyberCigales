@@ -1,5 +1,5 @@
 <?php 
-    include_once 'views/header.php'
+    include_once 'header.php'
 ?>
 
     <h1 id="index-text">Bienvenue, <?php if(isset($_SESSION['id'])){
