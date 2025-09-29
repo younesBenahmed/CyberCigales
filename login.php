@@ -1,11 +1,11 @@
 <?php
 include_once 'header.php';
-include_once './helpers/session_helper.php'; ?>
+include_once '../helpers/session_helper.php'; ?>
 
     <h1 class="header">Veuillez vous connecter</h1>
     <?php flash('login'); ?>
 
-    <form method="post" action="./controllers/Users.php">
+    <form method="post" action="/controllers/Users.php">
         <input type="hidden" name="type" value="login">
 
         <input type="text" name="name/email" 
