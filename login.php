@@ -1,6 +1,6 @@
 <?php
 include_once 'header.php';
-include_once '../helpers/session_helper.php'; ?>
+include_once './helpers/session_helper.php'; ?>
 
     <h1 class="header">Veuillez vous connecter</h1>
     <?php flash('login'); ?>
