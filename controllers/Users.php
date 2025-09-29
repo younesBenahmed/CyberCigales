@@ -95,8 +95,51 @@ class Users {
             die("Quelque chose s'est mal passé");
         }
     }
-}
 
+    public function login(){
+        // Je nettoie TOUTES les données POST en une seule fois
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        
+        // Je récupère et nettoie les données du formulaire de connexion
+        $data = [
+            'name/email' => trim($_POST['name/email']), // Pseudo ou email
+            'password' => trim($_POST['password']) // Mot de passe
+        ];
+        
+        // Validation des inputs - je vérifie que tous les champs sont remplis
+        if(empty($data['name/email']) || empty($data['password'])) {
+            flash("login", "Veuillez remplir tous les champs");
+            redirect("../login.php");
+        }
+
+        // Je vérifie si l'utilisateur existe en base (par email ou pseudo)
+        if($this->userModel->findUserByEmailOrUsername($data['name/email'], $data['name/email'])){
+            // Si l'utilisateur existe, je récupère ses infos
+            $loggedUser = $this->userModel->login($data['name/email'], $data['password']);
+            if($loggedUser){
+                // Si le mot de passe est correct, je crée une session utilisateur
+                $this->createUserSession($loggedUser);
+            } else{
+                // Si le mot de passe est incorrect, j'affiche une erreur
+                flash("login", "Mot de passe incorrect");
+                redirect("../login.php");
+            }
+        } else{
+            // Si l'utilisateur n'existe pas, j'affiche une erreur
+            flash("login", "Utilisateur non trouvé");
+            redirect("../login.php");
+        }
+    }
+
+    public function createUserSession($user){
+        // Je crée des variables de session avec les infos de l'utilisateur
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_email'] = $user->email;
+        $_SESSION['user_pseudo'] = $user->pseudo;
+        // Je redirige vers la page d'accueil ou le tableau de bord
+        redirect("../index.php");
+    }
+}
 // Je crée une instance de ma classe Users pour pouvoir utiliser ses méthodes
 $init = new Users;
 
@@ -106,6 +149,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     switch($_POST['type']){
         case 'register': // Si c'est une inscription
             $init->register(); // J'appelle ma méthode register()
+            break;
+        case 'login': // Si c'est une connexion
+            $init->login(); // J'appelle ma méthode login()
             break;
     }
 }
