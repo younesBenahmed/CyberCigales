@@ -55,5 +55,19 @@ class User{
             return false; // Erreur lors de l'inscription
         }
     }
-}
 
+
+    public function login($nameOrEmail, $password){
+        $row = $this->findUserByEmailOrUsername($nameOrEmail, $nameOrEmail);
+        if($row == false) {
+            return false; // Utilisateur non trouvé
+        }
+        $hashed_password = $row->password_hash;
+        if(password_verify($password, $hashed_password)){
+            return $row; // Mot de passe correct, retourne les infos utilisateur
+        } else {
+            return false; // Mot de passe incorrect
+    }
+    }
+}
+?>
