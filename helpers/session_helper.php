@@ -11,9 +11,7 @@ if(!isset($_SESSION)){
 // $class = la classe CSS pour le style (rouge pour erreur par défaut)
 function flash($name = '', $message = '', $class = 'form-message form-message-red'){
     if(!empty($name)){
-        // Si j'ai un nom de message
-        if(!empty($name)){
-            if(!empty($message) && !empty($_SESSION[$name])){
+            if(!empty($message) && empty($_SESSION[$name])){
                 $_SESSION[$name] = $message; // Je stocke le message
                 $_SESSION[$name.'_class'] = $class; // Je stocke la classe CSS
             } else if(empty($message) && !empty($_SESSION[$name])){
@@ -23,10 +21,8 @@ function flash($name = '', $message = '', $class = 'form-message form-message-re
                 unset($_SESSION[$name]); // Je supprime le message après l'avoir affiché
                 unset($_SESSION[$name.'_class']); // Je supprime la classe aussi
             }
-
         }
     }
-}
 
 // Ma fonction pour rediriger l'utilisateur vers une autre page
 function redirect($location){

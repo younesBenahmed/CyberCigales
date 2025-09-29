@@ -42,7 +42,7 @@ class Users {
         // Validation des inputs - je vérifie que tous les champs sont remplis
         if(empty($data['prenom']) || empty($data['nom']) || empty($data['pseudo']) || empty($data['email']) || empty($data['password']) || empty($data['password_repeat'])) {
             flash("register", "Veuillez remplir tous les champs");
-            redirect("../signup.php");
+            redirect("/signup.php");
         }
 
         // Je vérifie si le pseudo contient seulement des lettres et des chiffres (pas d'espaces, pas de caractères spéciaux)
@@ -50,7 +50,7 @@ class Users {
         if(!preg_match("/^[a-zA-Z0-9]*$/", $data['pseudo'])){
         // Si le pseudo contient des trucs bizarres (espaces, @, !, etc.), j'affiche une erreur
             flash("register", "Pseudo Invalide");
-            redirect("../signup.php"); // Je renvoie l'utilisateur sur la page d'inscription
+            redirect("/signup.php"); // Je renvoie l'utilisateur sur la page d'inscription
         }
 
         // Je vérifie si l'email a un format valide (doit contenir @ et un domaine)
@@ -58,7 +58,7 @@ class Users {
         if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
             // Si l'email n'a pas le bon format (pas de @, domaine invalide, etc.)
             flash("register", "Email invalide");
-            redirect("../signup.php"); // Je renvoie l'utilisateur pour corriger
+            redirect("/signup.php"); // Je renvoie l'utilisateur pour corriger
         } 
 
 
