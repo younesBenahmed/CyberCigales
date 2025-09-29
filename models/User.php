@@ -26,7 +26,7 @@ class User{
 
         // Si j'ai trouvé un utilisateur, je le retourne
         // Sinon je retourne false (email et pseudo disponibles)
-        if($this->db->rowCount() > 0){
+        if($row){
             return $row; // Utilisateur trouvé = email/pseudo déjà pris
         }else{
             return false; // Aucun utilisateur = email/pseudo libres
@@ -38,15 +38,15 @@ class User{
     public function register($data){
 
         // Ma requête d'insertion avec tous les champs nécessaires
-        $this->db->query('INSERT INTO users (prenom, nom, pseudo, email, password) 
-        VALUES (:prenom, :nom, :pseudo, :email, :password)');
+        $this->db->query('INSERT INTO users (prenom, nom, pseudo, email, password_hash) 
+        VALUES (:prenom, :nom, :pseudo, :email, :password_hash)');
 
         // Je lie chaque valeur à son placeholder
         $this->db->bind(':prenom', $data['prenom']);
         $this->db->bind(':nom', $data['nom']);
         $this->db->bind(':pseudo', $data['pseudo']);
         $this->db->bind(':email', $data['email']);
-        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':password_hash', $data['password']);
 
         // J'exécute la requête et je retourne le résultat
         if($this->db->execute()){
