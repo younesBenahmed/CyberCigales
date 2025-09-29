@@ -62,8 +62,8 @@ class User{
         if($row == false) {
             return false; // Utilisateur non trouvé
         }
-        $hashed_password = $row->password_hash;
-        if(password_verify($password, $hashed_password)){
+        $hashedPassword = $row->password_hash;
+        if(password_verify($password, $hashedPassword)){
             return $row; // Mot de passe correct, retourne les infos utilisateur
         } else {
             return false; // Mot de passe incorrect

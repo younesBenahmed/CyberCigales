@@ -109,16 +109,17 @@ class Users {
         // Validation des inputs - je vérifie que tous les champs sont remplis
         if(empty($data['name/email']) || empty($data['password'])) {
             flash("login", "Veuillez remplir tous les champs");
-            redirect("../login.php");
+            header("location: ../login.php");
+            exit();
         }
 
         // Je vérifie si l'utilisateur existe en base (par email ou pseudo)
         if($this->userModel->findUserByEmailOrUsername($data['name/email'], $data['name/email'])){
             // Si l'utilisateur existe, je récupère ses infos
-            $loggedUser = $this->userModel->login($data['name/email'], $data['password']);
-            if($loggedUser){
+            $loggedInUser = $this->userModel->login($data['name/email'], $data['password']);
+            if($loggedInUser){
                 // Si le mot de passe est correct, je crée une session utilisateur
-                $this->createUserSession($loggedUser);
+                $this->createUserSession($loggedInUser);
             } else{
                 // Si le mot de passe est incorrect, j'affiche une erreur
                 flash("login", "Mot de passe incorrect");
@@ -140,6 +141,8 @@ class Users {
         redirect("../index.php");
     }
 }
+
+
 // Je crée une instance de ma classe Users pour pouvoir utiliser ses méthodes
 $init = new Users;
 
