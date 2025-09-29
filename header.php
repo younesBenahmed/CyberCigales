@@ -17,6 +17,9 @@
             <a href="index.php"><li>Accueil</li></a>
             <?php if(!isset($_SESSION['id'])) : ?>
                 <a href="signup.php"><li>Inscription</li></a>
+                <a href="login.php"><li>Connexion</li></a>
+            <?php else : ?>
+                <a href="./controllers/Users.php?q=logout"><li>Déconnexion</li></a>
             <?php endif; ?>
         </ul>
     </nav>
