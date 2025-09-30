@@ -15,7 +15,7 @@
     <nav>
         <ul>
             <a href="index.php"><li>Accueil</li></a>
-            <?php if(!isset($_SESSION['id'])) : ?>
+            <?php if(!isset($_SESSION['user_id'])) : ?>
                 <a href="signup.php"><li>Inscription</li></a>
                 <a href="login.php"><li>Connexion</li></a>
             <?php else : ?>

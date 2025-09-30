@@ -140,6 +140,19 @@ class Users {
         // Je redirige vers la page d'accueil ou le tableau de bord
         redirect("../index.php");
     }
+
+    public function logout(){
+        // Je supprime la variable de session qui contient l'id de l'utilisateur
+        unset($_SESSION['user_id']);
+        // Je supprime la variable de session qui contient l'email de l'utilisateur
+        unset($_SESSION['user_email']);
+        // Je supprime la variable de session qui contient le pseudo de l'utilisateur
+        unset($_SESSION['user_pseudo']);
+        // Je détruis complètement la session (toutes les variables de session sont supprimées)
+        session_destroy();
+        // Je redirige l'utilisateur vers la page d'accueil
+        redirect("../index.php");
+    }
 }
 
 
@@ -156,6 +169,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         case 'login': // Si c'est une connexion
             $init->login(); // J'appelle ma méthode login()
             break;
+        default:  // Si ce n'est ni register ni login, je redirige vers l'accueil
+        redirect("../index.php");
     }
+}else{
+    // Si la requête n'est pas POST, je regarde le paramètre 'q' dans l'URL
+    switch($_GET['q']){
+        case 'logout':
+             $init->logout(); // Si q=logout, je déconnecte l'utilisateur
+             break;
+        default:
+        redirect("../index.php"); // Sinon, je redirige vers l'accueil
+    }    
 }
 ?>
