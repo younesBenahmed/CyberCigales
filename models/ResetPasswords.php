@@ -11,7 +11,7 @@ class ResetPassword{
     }
 
     public function deleteEmail($email){
-        $this->db->query('DELETE FROM resetpasswords WHERE resetEmail = :email');
+        $this->db->query('DELETE FROM pwdreset WHERE pwdResetEmail = :email');
         $this->db->bind(':email', $email);
 
         if($this->db->execute()){
