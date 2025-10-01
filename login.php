@@ -17,7 +17,7 @@ include_once './helpers/session_helper.php'; ?>
         <button type="submit" name="submit">Se connecter</button>
     </form>
 
-    <div class="form-sub-msg"><a href="./reset_password.php">Mot de passe oublié ?</a></div>
+    <div class="form-sub-msg"><a href="./reset-password.php">Mot de passe oublié ?</a></div>
 
 <?php
 include_once "footer.php";
