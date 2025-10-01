@@ -23,11 +23,11 @@ class ResetPassword{
         // Set up PHPMailer
         $this->mail = new PHPMailer();
         $this->mail->isSMTP();
-        $this->mail->Host = 'smtp.mailtrap.io';
+        $this->mail->Host = 'sandbox.smtp.mailtrap.io';
         $this->mail->SMTPAuth = true;
         $this->mail->Port = 2525;
-        $this->mail->Username = ''; // Rajouter l'username une fois le mailer créé
-        $this->mail->Password = ''; // Rajouter le mot de passe une fois le mailer créé 
+        $this->mail->Username = '2b4343dfdaca89'; // Rajouter l'username une fois le mailer créé
+        $this->mail->Password = '33f5b5da11d9d1'; // Rajouter le mot de passe une fois le mailer créé 
     }
 
     public function sendEmail(){
@@ -35,12 +35,12 @@ class ResetPassword{
         $usersEmail = trim($_POST['usersEmail']);
 
         if(empty($usersEmail)){
-            flash("reset", "Plese input email");
+            flash("reset", "SVP rentrée un email");
             redirect("../reset-password.php");
         }
 
         if(!filter_var($usersEmail, FILTER_VALIDATE_EMAIL)){
-            flash("reset", "Invalid email");
+            flash("reset", "Email invalide");
             redirect("../reset-password.php");
         }
 
