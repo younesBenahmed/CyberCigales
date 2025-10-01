@@ -27,7 +27,7 @@ class ResetPasswordsController{
         $this->mail->SMTPAuth = true;
         $this->mail->Port = 587;
         $this->mail->Username = 'contact.slides.fr@gmail.com'; // Rajouter l'username une fois le mailer créé
-        $this->$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        
 
         $this->mail->Password = 'Mileven90@'; // Rajouter le mot de passe une fois le mailer créé 
     }
