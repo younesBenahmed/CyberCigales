@@ -23,11 +23,13 @@ class ResetPasswordsController{
         // Set up PHPMailer
         $this->mail = new PHPMailer();
         $this->mail->isSMTP();
-        $this->mail->Host = 'smtp.gmail.com';
-        $this->mail->SMTPAuth = true;
-        $this->mail->Port = 587;
-        $this->mail->Username = 'contact.slides.fr@gmail.com'; // Rajouter l'username une fois le mailer créé
-        
+        $mail->SMTPAuth = true;
+        $this->$mail->SMTPSecure = 'tls';
+        $this->$mail->Host = "smtp.gmail.com";
+        $this->$mail->Mailer = "smtp";
+        $this->$mail->Port = 587; //use port 465 when using SMPTSecure = 'ssl'
+        $this->$mail->Username = "contact.slides.fr@gmail.com";
+        $this->$mail->Password = "Mileven90@";
 
         $this->mail->Password = 'Mileven90@'; // Rajouter le mot de passe une fois le mailer créé 
     }
