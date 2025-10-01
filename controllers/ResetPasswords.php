@@ -23,11 +23,13 @@ class ResetPasswordsController{
         // Set up PHPMailer
         $this->mail = new PHPMailer();
         $this->mail->isSMTP();
-        $this->mail->Host = 'sandbox.smtp.mailtrap.io';
+        $this->mail->Host = 'smtp.gmail.com';
         $this->mail->SMTPAuth = true;
-        $this->mail->Port = 2525;
-        $this->mail->Username = '2b4343dfdaca89'; // Rajouter l'username une fois le mailer créé
-        $this->mail->Password = '33f5b5da11d9d1'; // Rajouter le mot de passe une fois le mailer créé 
+        $this->mail->Port = 587;
+        $this->mail->Username = 'contact.slides.fr@gmail.com'; // Rajouter l'username une fois le mailer créé
+        $this->$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+
+        $this->mail->Password = 'Mileven90@'; // Rajouter le mot de passe une fois le mailer créé 
     }
 
     public function sendEmail(){
@@ -48,7 +50,7 @@ class ResetPasswordsController{
         $selector = bin2hex(random_bytes(8));
         // sera utilisé pour confirmation une fois que l'entrée dans la base de données aura été trouvée
         $token = random_bytes(32);
-        $url = "http://localhost:8080/login-system/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
+        $url = "https://benahmed.alwaysdata.net/login-system/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
         // Expire au bout de 30 minutes
         $expires = date("U") + 1800;
         if(!$this->resetModel->deleteEmail($usersEmail)){
