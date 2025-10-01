@@ -21,20 +21,17 @@ class ResetPassword{
         }
     }
 
-    public function insertToken($email, $selector, $hashedToken, $expires){
+     public function insertToken($email, $selector, $hashedToken, $expires){
         $this->db->query('INSERT INTO pwdreset (pwdResetEmail, pwdResetSelector, pwdResetToken, 
         pwdResetExpires) VALUES (:email, :selector, :token, :expires)');
-
-        $this->db->query('SELECT id FROM users WHERE email = :email');
         $this->db->bind(':email', $email);
         $this->db->bind(':selector', $selector);
         $this->db->bind(':token', $hashedToken);
         $this->db->bind(':expires', $expires);
-
+        //Execute
         if($this->db->execute()){
             return true;
         }else{
             return false;
         }
     }
-}
