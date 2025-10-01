@@ -2,7 +2,7 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-require_once '../models/ResetPassword.php';
+require_once '../models/ResetPasswords.php';
 require_once '../helpers/session_helper.php';
 require_once '../models/User.php';
 
