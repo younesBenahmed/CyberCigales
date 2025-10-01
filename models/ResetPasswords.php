@@ -22,7 +22,10 @@ class ResetPassword{
     }
 
     public function insertToken($email, $selector, $hashedToken, $expires){
-        $this->db->query('INSERT INTO resetpasswords (resetEmail, resetSelector, resetToken, resetExpires) VALUES (:email, :selector, :token, :expires)');
+        $this->db->query('INSERT INTO pwdreset (pwdResetEmail, pwdResetSelector, pwdResetToken, 
+        pwdResetExpires) VALUES (:email, :selector, :token, :expires)');
+
+        $this->db->query('SELECT id FROM users WHERE email = :email');
         $this->db->bind(':email', $email);
         $this->db->bind(':selector', $selector);
         $this->db->bind(':token', $hashedToken);
