@@ -11,7 +11,7 @@ require_once '../PHPMailer/src/PHPMailer.php';
 require_once '../PHPMailer/src/Exception.php';
 require_once '../PHPMailer/src/SMTP.php';
 
-class ResetPassword{
+class ResetPasswordsController{
     private $resetModel;
     private $userModel;
     private $mail;
@@ -77,7 +77,7 @@ class ResetPassword{
     }
 }
 
-$init = new ResetPasswords;
+$init = new ResetPasswordsController;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     switch($_POST['type']){
