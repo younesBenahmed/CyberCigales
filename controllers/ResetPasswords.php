@@ -50,7 +50,7 @@ class ResetPasswordsController{
         $selector = bin2hex(random_bytes(8));
         // sera utilisé pour confirmation une fois que l'entrée dans la base de données aura été trouvée
         $token = random_bytes(32);
-        $url = "https://benahmed.alwaysdata.net/login-system/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
+        $url = "https://benahmed.alwaysdata.net/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
         // Expire au bout de 30 minutes
         $expires = date("U") + 1800;
         if(!$this->resetModel->deleteEmail($usersEmail)){
