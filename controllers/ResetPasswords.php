@@ -33,7 +33,7 @@ class ResetPasswordsController{
 }
 
     public function sendEmail(){
-        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $_POST = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         $usersEmail = trim($_POST['usersEmail']);
 
         if(empty($usersEmail)){
@@ -56,7 +56,7 @@ class ResetPasswordsController{
         if(!$this->resetModel->deleteEmail($usersEmail)){
             die ("There was an error");
         }
-        $hashedToken = password_hash($token, PASSWORD_DEFAULT);
+        $hashedToken = password_hash(bin2hex($token), PASSWORD_DEFAULT);
         if(!$this->resetModel->insertToken($usersEmail, $selector, $hashedToken, $expires)){
             die ("There was an error");
         }
