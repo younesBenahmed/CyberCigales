@@ -69,5 +69,19 @@ class User{
             return false; // Mot de passe incorrect
     }
     }
+
+
+    //Réinitialisation du mot de passe
+    public function resetPassword($newPwdHash, $tokenEmail){
+        $this->db->query('UPDATE users SET usersPwd=:pwd WHERE usersEmail=:email');
+        $this->db->bind(':pwd', $newPwdHash);
+        $this->db->bind(':email', $tokenEmail);
+
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 ?>

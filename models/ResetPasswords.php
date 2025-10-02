@@ -35,4 +35,17 @@ class ResetPassword{
             return false;
         }
     }
+
+    public function resetPassword($selector, $currentDate){
+        $this->db->query('SELECT * FROM pwdreset WHERE pwdResetSelector = :selector AND 
+        pwdResetExpires >= :currentDate');
+        $this->db->bind(':selector', $selector);
+        $this->db->bind(':currentDate', $currentDate);
+        $row = $this->db->single();
+        if($this->db->rowCount() > 0){
+            return $row;
+        }else{
+            return false;
+        }
+    }
 }
