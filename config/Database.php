@@ -157,6 +157,9 @@ public function query($sql){
 
 
 
+    public function rowCount(){
+    return $this->stmt->rowCount();
+        }
 
    // Ma méthode pour récupérer UN SEUL résultat  
     public function single(){
