@@ -25,11 +25,11 @@ class ResetPasswordsController{
     $this->mail->isSMTP();
     $this->mail->SMTPAuth = true;
     $this->mail->SMTPSecure = 'tls';
-    $this->mail->Host = "smtp.gmail.com";
+    $this->mail->Host = "smtp-relay.gmail.com";
     $this->mail->Mailer = "smtp";
     $this->mail->Port = 587; // Utilisez 465 pour SSL
     $this->mail->Username = "cybercigales@gmail.com";
-    $this->mail->Password = "Aqzsed90@";
+    $this->mail->Password = "megr wvzc czjy iejh ";
     }
 
     public function sendEmail(){
