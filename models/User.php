@@ -77,7 +77,9 @@ class User{
         $this->db->bind(':pwd', $newPwdHash);
         $this->db->bind(':email', $tokenEmail);
 
-        if($this->db->execute()){
+        $result = $this->db->execute();
+        error_log('DEBUG: rows updated = ' . $this->db->rowCount());
+        if($result){
             return true;
         }else{
             return false;
