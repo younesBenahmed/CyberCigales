@@ -73,7 +73,7 @@ class User{
 
     //Réinitialisation du mot de passe
     public function resetPassword($newPwdHash, $tokenEmail){
-        $this->db->query('UPDATE users SET usersPwd=:pwd WHERE usersEmail=:email');
+        $this->db->query('UPDATE users SET password_hash=:pwd WHERE email=:email');
         $this->db->bind(':pwd', $newPwdHash);
         $this->db->bind(':email', $tokenEmail);
 
