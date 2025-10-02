@@ -22,8 +22,7 @@ class ResetPasswordsController{
     $this->userModel = new User;
     // Set up PHPMailer
     $this->mail = new PHPMailer();
-    $this->SMTPDebug = 0;
-
+    $this->mail->SMTPDebug = 0;
     $this->mail->isSMTP();
     $this->mail->Host = "smtp.gmail.com";
     $this->mail->SMTPAuth = true;
@@ -31,7 +30,6 @@ class ResetPasswordsController{
     $this->mail->Username = "cybercigales@gmail.com";
     $this->mail->Password = "megr wvzc czjy iejh ";
     $this->mail->SMTPSecure = PHPMAILER::ENCRYPTION_STARTLLS;
-    
 }
 
     public function sendEmail(){
