@@ -42,7 +42,7 @@ class ResetPassword{
         $this->db->bind(':selector', $selector);
         $this->db->bind(':currentDate', $currentDate);
         $row = $this->db->single();
-        if($this->db->rowCount() > 0){
+        if($row){
             return $row;
         }else{
             return false;
