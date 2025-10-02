@@ -119,6 +119,8 @@ class ResetPasswordsController{
         }
 
         $newPwdHash = password_hash($data['pwd'], PASSWORD_DEFAULT);
+        error_log('DEBUG: email utilisé pour update = ' . $tokenEmail);
+        error_log('DEBUG: nouveau hash = ' . $newPwdHash);
         if(!$this->userModel->resetPassword($newPwdHash, $tokenEmail)){
             flash("newReset", "Il y a eu une erreur.");
             redirect($url);
