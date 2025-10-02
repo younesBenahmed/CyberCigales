@@ -28,8 +28,8 @@ class ResetPasswordsController{
     $this->mail->Host = "smtp.gmail.com";
     $this->mail->Mailer = "smtp";
     $this->mail->Port = 587; // Utilisez 465 pour SSL
-    $this->mail->Username = "contact.slides.fr@gmail.com";
-    $this->mail->Password = "Mileven90@";
+    $this->mail->Username = "cybercigales@gmail.com";
+    $this->mail->Password = "Aqzsed90@";
     }
 
     public function sendEmail(){
@@ -66,7 +66,7 @@ class ResetPasswordsController{
         $message .= '<p>Voici votre lien de réinitialisation : </br>';
         $message .= '<a href="' . $url . '">' . $url . '</a</p>';
 
-        $this->mail->setFrom(''); // Rajouter l'email quand nous l'aurons créé
+        $this->mail->setFrom('cybercigales@gmail.com'); // Rajouter l'email quand nous l'aurons créé
         $this->mail->isHTML(true);
         $this->mail->Subject = $subject;
         $this->mail->Body = $message;
