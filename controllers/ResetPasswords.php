@@ -56,7 +56,7 @@ class ResetPasswordsController{
         if(!$this->resetModel->deleteEmail($usersEmail)){
             die ("There was an error");
         }
-        $hashedToken = password_hash(bin2hex($token), PASSWORD_DEFAULT);
+        $hashedToken = password_hash($token, PASSWORD_DEFAULT);
         if(!$this->resetModel->insertToken($usersEmail, $selector, $hashedToken, $expires)){
             die ("There was an error");
         }
@@ -74,7 +74,7 @@ class ResetPasswordsController{
 
         $this->mail->send();
 
-        flash("reset", "Un email de réinitialisation a été envoyé !", 'form-message form-messge-green');
+        flash("reset", "Un email de réinitialisation a été envoyé !", 'form-message form-message-green');
         redirect("../reset-password.php");
     }
     public function resetPassword(){
