@@ -22,15 +22,17 @@ class ResetPasswordsController{
     $this->userModel = new User;
     // Set up PHPMailer
     $this->mail = new PHPMailer();
+    $this->SMTPDebug = 0;
+
     $this->mail->isSMTP();
+    $this->mail->Host = "smtp.gmail.com";
     $this->mail->SMTPAuth = true;
-    $this->mail->SMTPSecure = 'tls';
-    $this->mail->Host = "smtp-relay.gmail.com";
-    $this->mail->Mailer = "smtp";
-    $this->mail->Port = 587; // Utilisez 465 pour SSL
+    $this->mail->Port = 587;
     $this->mail->Username = "cybercigales@gmail.com";
     $this->mail->Password = "megr wvzc czjy iejh ";
-    }
+    $this->mail->SMTPSecure = PHPMAILER::ENCRYPTION_STARTLLS;
+    
+}
 
     public function sendEmail(){
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -66,7 +68,7 @@ class ResetPasswordsController{
         $message .= '<p>Voici votre lien de réinitialisation : </br>';
         $message .= '<a href="' . $url . '">' . $url . '</a</p>';
 
-        $this->mail->setFrom('cybercigales@gmail.com'); // Rajouter l'email quand nous l'aurons créé
+        $this->mail->setFrom('cybercigales@gmail.com', 'CyberCigales'); 
         $this->mail->isHTML(true);
         $this->mail->Subject = $subject;
         $this->mail->Body = $message;
