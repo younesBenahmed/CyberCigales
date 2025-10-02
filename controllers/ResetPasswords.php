@@ -52,7 +52,7 @@ class ResetPasswordsController{
         $token = random_bytes(32);
         $url = "https://benahmed.alwaysdata.net/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
         // Expire au bout de 30 minutes
-        $expires = date("U") + 1800;
+        $expires = date("Y-m-d H:i:s", time() + 1800); // Format DATETIME pour MySQL
         if(!$this->resetModel->deleteEmail($usersEmail)){
             die ("There was an error");
         }
@@ -88,7 +88,7 @@ class ResetPasswordsController{
         $url = 'https://benahmed.alwaysdata.net/create-new-password.php?selector=' . $data['selector'] . 
         '&validator=' . $data['validator'];
 
-        if(empty($_POST['pwd']) || $_POST['pwd-repeat']){
+        if(empty($_POST['pwd']) || empty($_POST['pwd-repeat'])){
             flash("newpwd", "SVP remplissez tous les champs");
             redirect($url);
         } else if($data['pwd'] != $data['pwd-repeat']){
