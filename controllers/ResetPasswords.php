@@ -85,7 +85,7 @@ class ResetPasswordsController{
             'pwd' => trim($_POST['pwd']),
             'pwd-repeat' => trim($_POST['pwd-repeat'])
         ];
-        $url = 'create-new-password.php?selector=' . $data['selector'] . 
+        $url = 'https://benahmed.alwaysdata.net/create-new-password.php?selector=' . $data['selector'] . 
         '&validator=' . $data['validator'];
 
         if(empty($_POST['pwd']) || $_POST['pwd-repeat']){
