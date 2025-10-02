@@ -78,7 +78,7 @@ class ResetPasswordsController{
         redirect("../reset-password.php");
     }
     public function resetPassword(){
-        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_DEFAULT);
         $data = [
             'selector' => trim($_POST['selector']),
             'validator' => trim($_POST['validator']),
