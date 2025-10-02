@@ -119,8 +119,6 @@ class ResetPasswordsController{
         }
 
         $newPwdHash = password_hash($data['pwd'], PASSWORD_DEFAULT);
-        error_log('DEBUG: email utilisé pour update = ' . $tokenEmail);
-        error_log('DEBUG: nouveau hash = ' . $newPwdHash);
         if(!$this->userModel->resetPassword($newPwdHash, $tokenEmail)){
             flash("newReset", "Il y a eu une erreur.");
             redirect($url);
@@ -131,8 +129,8 @@ class ResetPasswordsController{
             redirect($url);
         }
 
-        flash("newReset", "Votre mot de passe a été mis à jour ! Vous pouvez vous connecter avec votre nouveau mot de passe.", 'form-message form-message-green');
-        redirect($url);
+    flash("newReset", "Votre mot de passe a été mis à jour ! Vous pouvez vous connecter avec votre nouveau mot de passe.", 'form-message form-message-green');
+    redirect("../login.php");
     }
 }
 
