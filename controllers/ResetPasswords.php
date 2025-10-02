@@ -28,7 +28,7 @@ class ResetPasswordsController{
     $this->mail->SMTPAuth = true;   
     $this->mail->Username = "cybercigales@gmail.com";
     $this->mail->Password = "megr wvzc czjy iejh ";
-    $this->mail->SMTPSecure = PHPMAILER::ENCRYPTION_STARTTLS;
+    $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $this->mail->Port = 587;
 }
 
