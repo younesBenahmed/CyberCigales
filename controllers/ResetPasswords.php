@@ -52,7 +52,7 @@ class ResetPasswordsController{
         $token = random_bytes(32);
         $url = "https://benahmed.alwaysdata.net/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
         // Expire au bout de 30 minutes
-        $expires = date("Y-m-d H:i:s", time() + 1800); // Format DATETIME pour MySQL
+        $expires = date("U") + 1800;
         if(!$this->resetModel->deleteEmail($usersEmail)){
             die ("There was an error");
         }
